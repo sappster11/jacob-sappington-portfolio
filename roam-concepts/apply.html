@@ -60,13 +60,7 @@ nav a:hover::after{width:100%}
 .page-dek strong{color:var(--ink);font-weight:500}
 
 /* form */
-.apply-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(40px,6vw,100px);padding-bottom:clamp(80px,12vh,140px);align-items:start}
-@media(max-width:880px){.apply-grid{grid-template-columns:1fr}}
-.aside{position:sticky;top:110px;display:flex;flex-direction:column;gap:28px}
-.aside-item{border-top:1px solid var(--line);padding-top:18px}
-.aside-item .eyebrow{display:block;margin-bottom:8px}
-.aside-item p{font-size:13.5px;color:var(--muted);max-width:34ch}
-.aside-item p b{color:var(--ink);font-weight:500}
+.apply-grid{max-width:820px;padding-bottom:clamp(80px,12vh,140px)}
 
 .form-card{border:1px solid var(--line);background:var(--bg-deep);padding:clamp(28px,4vw,52px)}
 .fieldset{margin-bottom:clamp(32px,4.5vh,44px)}
@@ -162,25 +156,6 @@ select.form-input option{background:#131210;color:#F2EEE1}
   </div>
 
   <div class="apply-grid">
-    <aside class="aside">
-      <div class="aside-item">
-        <span class="eyebrow">What happens next</span>
-        <p><b>We reply within one business day</b> — a real note from a person who has looked at your site, not a scheduling link and a shrug.</p>
-      </div>
-      <div class="aside-item">
-        <span class="eyebrow">The first call</span>
-        <p>Thirty minutes. We'll tell you what we'd do first and what it should return. <b>No decks over 12 slides.</b></p>
-      </div>
-      <div class="aside-item">
-        <span class="eyebrow">If we're not the fit</span>
-        <p>We'll say so, and point you somewhere better. <b>No jargon. No lock-in.</b></p>
-      </div>
-      <div class="aside-item">
-        <span class="eyebrow">Prefer email?</span>
-        <p><a href="mailto:hello@roam.studio" style="color:var(--sage)">hello@roam.studio</a></p>
-      </div>
-    </aside>
-
     <form class="form-card" id="applyForm" novalidate>
       <div class="fieldset">
         <div class="legend">About <em>you</em></div>

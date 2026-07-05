@@ -98,6 +98,34 @@ nav a:hover::after{width:100%}
 .proof-cell .eyebrow{display:block;margin-top:14px;max-width:22ch;line-height:1.6;letter-spacing:.14em}
 @media(max-width:720px){.proof-grid{grid-template-columns:1fr}.proof-cell{border-left:none;padding-left:0;border-top:1px solid var(--line-soft)}.proof-cell:first-child{border-top:none}}
 
+/* footnote markers + endnotes — honesty as a typographic device */
+.fn{font:600 55%/1 'Libre Franklin',sans-serif;vertical-align:super;margin-left:4px}
+.fn a{color:var(--sage)}
+.fn a:hover{text-decoration:underline}
+.endnotes{padding-top:clamp(70px,11vh,140px)}
+.endnotes .eyebrow{display:block;padding-bottom:16px}
+.endnotes ol{border-top:1px solid var(--line);padding:22px 0 0 18px;max-width:64ch}
+.endnotes li{font-size:12.5px;line-height:1.7;color:var(--muted);padding-bottom:10px}
+.endnotes li::marker{color:var(--sage);font-weight:600}
+
+/* fig. 1 — the typeset argument */
+.figure{padding-top:clamp(90px,15vh,180px)}
+.fig-frame{position:relative;border:1px solid var(--line);background:var(--bg-deep);padding:clamp(18px,3vw,40px)}
+.fig-legend{display:flex;gap:28px;flex-wrap:wrap;padding-bottom:18px}
+.fig-legend span{display:flex;align-items:center;gap:9px;font:500 12px/1 'Libre Franklin',sans-serif;color:var(--muted)}
+.fig-legend .dot{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block}
+#chart{overflow-x:auto}
+#chart svg{display:block;min-width:680px;width:100%;height:auto}
+.fig-tip{
+  position:absolute;pointer-events:none;z-index:5;
+  background:var(--ink);color:var(--bg);border-radius:2px;
+  padding:10px 13px;font:500 12px/1.65 'Libre Franklin',sans-serif;
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+  transform:translate(-50%,calc(-100% - 14px));
+}
+.fig-tip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:baseline}
+.fig-caption{margin-top:16px;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:15.5px;color:var(--muted)}
+
 /* case studies — grain lives here, inside the frames */
 .work{padding-top:clamp(90px,15vh,180px)}
 .section-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:26px}
@@ -272,18 +300,34 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
 <section class="proof wrap">
   <div class="proof-grid">
     <div class="proof-cell reveal">
-      <div class="proof-num">+38<span class="unit">%</span></div>
+      <div class="proof-num">+38<span class="unit">%</span><sup class="fn"><a href="#fn1">1</a></sup></div>
       <span class="eyebrow">Average lift in repeat purchase rate across accounts</span>
     </div>
     <div class="proof-cell reveal" style="transition-delay:.08s">
-      <div class="proof-num">$41<span class="unit">M</span></div>
+      <div class="proof-num">$41<span class="unit">M</span><sup class="fn"><a href="#fn2">2</a></sup></div>
       <span class="eyebrow">Retained revenue driven for clients in 2025</span>
     </div>
     <div class="proof-cell reveal" style="transition-delay:.16s">
-      <div class="proof-num">9.2<span class="unit">×</span></div>
+      <div class="proof-num">9.2<span class="unit">×</span><sup class="fn"><a href="#fn3">3</a></sup></div>
       <span class="eyebrow">Blended return on retention spend, portfolio-wide</span>
     </div>
   </div>
+</section>
+
+<section class="figure wrap">
+  <div class="section-head">
+    <span class="eyebrow">Fig. 1 — Why retention compounds</span>
+    <span class="eyebrow">Cumulative revenue per customer</span>
+  </div>
+  <div class="fig-frame reveal">
+    <div class="fig-legend">
+      <span><i class="dot" style="--c:#43A873"></i>With a retention system</span>
+      <span><i class="dot" style="--c:#B37F42"></i>Without one</span>
+    </div>
+    <div id="chart"></div>
+    <div class="fig-tip" id="figTip" hidden></div>
+  </div>
+  <p class="fig-caption">Fig. 1 — Twenty-four months of one customer, twice. The gap is the business.<sup class="fn"><a href="#fn4">4</a></sup></p>
 </section>
 
 <section class="work wrap" id="work">
@@ -400,6 +444,16 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
   </div>
 </section>
 
+<section class="endnotes wrap">
+  <span class="eyebrow">Notes</span>
+  <ol>
+    <li id="fn1">Median across 14 client accounts, 2024–2025, measured against 12-month holdouts. Yes, really.</li>
+    <li id="fn2">Incremental revenue attributed via holdout testing — not last-click, not vibes.</li>
+    <li id="fn3">Blended across email, SMS, and loyalty spend. Slow months included.</li>
+    <li id="fn4">The shape is real; the dollars are a composite account drawn to scale. Your curve gets drawn in the first 90 days.</li>
+  </ol>
+</section>
+
 <a class="cta-block" href="mailto:hello@roam.studio" id="contact">
   <div class="cta-aurora" aria-hidden="true"><div class="a1"></div><div class="a2"></div><div class="a3"></div></div>
   <div class="wrap cta-in">
@@ -478,6 +532,92 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
     g2.addColorStop(1,'rgba(0,0,0,.22)');
     ctx.fillStyle = g2; ctx.fillRect(0,0,w,h);
   });
+
+  /* Fig. 1 — cumulative revenue per customer, with vs without */
+  (function(){
+    var host = document.getElementById('chart');
+    if(!host) return;
+    var GREEN='#43A873', CLAY='#B37F42';
+    var W=960, H=430, L=64, R=250, T=26, B=48;
+    var pw = W-L-R, ph = H-T-B;
+    var MAXY=400, MAXM=24;
+    function withSys(m){ return 62 + 9*m + 0.18*m*m; }
+    function withoutSys(m){ return 62 + 88*(1-Math.exp(-m/3.2)); }
+    function X(m){ return L + pw*m/MAXM; }
+    function Y(v){ return T + ph*(1 - v/MAXY); }
+    function pathFor(f){
+      var d='';
+      for(var m=0;m<=MAXM;m+=0.5){ d += (m?' L':'M')+X(m).toFixed(1)+' '+Y(f(m)).toFixed(1); }
+      return d;
+    }
+    var grid='', ylab='';
+    [100,200,300,400].forEach(function(v){
+      grid += '<line x1="'+L+'" y1="'+Y(v)+'" x2="'+(W-R+40)+'" y2="'+Y(v)+'" stroke="rgba(242,238,225,.07)" stroke-width="1"/>';
+      ylab += '<text x="'+(L-12)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-family="Libre Franklin" font-size="11" fill="rgba(242,238,225,.4)">$'+v+'</text>';
+    });
+    var xlab='';
+    [0,6,12,18,24].forEach(function(m){
+      xlab += '<text x="'+X(m)+'" y="'+(H-16)+'" text-anchor="middle" font-family="Libre Franklin" font-size="11" fill="rgba(242,238,225,.4)">'+(m===0?'Month 0':m)+'</text>';
+    });
+    var endW = withSys(MAXM), endO = withoutSys(MAXM);
+    var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Line chart: cumulative revenue per customer over 24 months, with a retention system reaching $'+Math.round(endW)+' versus $'+Math.round(endO)+' without one.">'
+      + grid + ylab + xlab
+      + '<line x1="'+L+'" y1="'+Y(0)+'" x2="'+(W-R+40)+'" y2="'+Y(0)+'" stroke="rgba(242,238,225,.18)" stroke-width="1"/>'
+      + '<path id="lnO" d="'+pathFor(withoutSys)+'" fill="none" stroke="'+CLAY+'" stroke-width="2" stroke-linecap="round"/>'
+      + '<path id="lnW" d="'+pathFor(withSys)+'" fill="none" stroke="'+GREEN+'" stroke-width="2.4" stroke-linecap="round"/>'
+      + '<circle cx="'+X(MAXM)+'" cy="'+Y(endW)+'" r="4.5" fill="'+GREEN+'"/>'
+      + '<circle cx="'+X(MAXM)+'" cy="'+Y(endO)+'" r="4.5" fill="'+CLAY+'"/>'
+      + '<text x="'+(X(MAXM)+14)+'" y="'+(Y(endW)+5)+'" font-family="Libre Franklin" font-weight="600" font-size="13" fill="#F2EEE1">$'+Math.round(endW)+' <tspan font-weight="400" fill="rgba(242,238,225,.55)">with</tspan></text>'
+      + '<text x="'+(X(MAXM)+14)+'" y="'+(Y(endO)+5)+'" font-family="Libre Franklin" font-weight="600" font-size="13" fill="#F2EEE1">$'+Math.round(endO)+' <tspan font-weight="400" fill="rgba(242,238,225,.55)">without</tspan></text>'
+      + '<text x="'+X(8.4)+'" y="'+(Y(withoutSys(8.4))+34)+'" font-family="Newsreader" font-style="italic" font-size="16" fill="rgba(242,238,225,.72)">where most brands stall</text>'
+      + '<path d="M'+(X(8.2))+' '+(Y(withoutSys(8.2))+22)+' Q '+(X(7.6))+' '+(Y(withoutSys(7.6))+10)+' '+(X(7.4))+' '+(Y(withoutSys(7.4))+5)+'" fill="none" stroke="rgba(242,238,225,.4)" stroke-width="1"/>'
+      + '<text x="'+X(13.5)+'" y="'+(Y(withSys(16))-30)+'" font-family="Newsreader" font-style="italic" font-size="16" fill="rgba(242,238,225,.72)">where compounding starts paying</text>'
+      + '<path d="M'+(X(16.6))+' '+(Y(withSys(16))-22)+' Q '+(X(17.2))+' '+(Y(withSys(17))-10)+' '+(X(17.4))+' '+(Y(withSys(17.4))-5)+'" fill="none" stroke="rgba(242,238,225,.4)" stroke-width="1"/>'
+      + '<line id="xhair" x1="0" y1="'+T+'" x2="0" y2="'+Y(0)+'" stroke="rgba(242,238,225,.28)" stroke-width="1" visibility="hidden"/>'
+      + '<rect id="hitzone" x="'+L+'" y="'+T+'" width="'+pw+'" height="'+ph+'" fill="transparent"/>'
+      + '</svg>';
+    host.innerHTML = svg;
+
+    /* draw the lines in on reveal */
+    if(!reduce){
+      ['lnO','lnW'].forEach(function(id,i){
+        var ln = document.getElementById(id), len = ln.getTotalLength();
+        ln.style.strokeDasharray = len; ln.style.strokeDashoffset = len;
+        var io2 = new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if(e.isIntersecting){
+              ln.getBoundingClientRect();
+              ln.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(.4,.1,.2,1) '+(0.15+i*0.25)+'s';
+              ln.style.strokeDashoffset = '0';
+              io2.unobserve(ln);
+            }
+          });
+        },{threshold:.4});
+        io2.observe(ln);
+      });
+    }
+
+    /* crosshair + tooltip */
+    var tip = document.getElementById('figTip');
+    var svgEl = host.querySelector('svg');
+    var xhair = document.getElementById('xhair');
+    svgEl.addEventListener('mousemove', function(ev){
+      var r = svgEl.getBoundingClientRect();
+      var sx = (ev.clientX - r.left) * (W / r.width);
+      if(sx < L || sx > L+pw){ tip.hidden = true; xhair.setAttribute('visibility','hidden'); return; }
+      var m = Math.round((sx-L)/pw*MAXM);
+      xhair.setAttribute('x1', X(m)); xhair.setAttribute('x2', X(m));
+      xhair.setAttribute('visibility','visible');
+      tip.innerHTML = '<strong>Month '+m+'</strong><br>'
+        + '<span class="dot" style="background:'+GREEN+'"></span>With — $'+Math.round(withSys(m))
+        + '<br><span class="dot" style="background:'+CLAY+'"></span>Without — $'+Math.round(withoutSys(m));
+      var frame = host.closest('.fig-frame').getBoundingClientRect();
+      tip.style.left = (X(m)/W*r.width + r.left - frame.left)+'px';
+      tip.style.top = (r.top - frame.top + Y(withSys(m))/H*r.height)+'px';
+      tip.hidden = false;
+    });
+    svgEl.addEventListener('mouseleave', function(){ tip.hidden = true; xhair.setAttribute('visibility','hidden'); });
+  })();
 
   /* the allegory: a grainy monochrome moon */
   var mc = document.getElementById('moon');

@@ -116,7 +116,7 @@ footer p{font-size:12px;color:var(--muted);max-width:70ch}
     <h1>roam — the <em>color system</em></h1>
     <span class="eyebrow">Brand reference · v1 · Jul 2026</span>
   </div>
-  <p class="lede">Nine colors, three jobs each, one rule above all: the site is ink and bone; the earth tones are spent like money. Contrast ratios on each swatch are computed live against the ground they sit on — WCAG asks 4.5:1 for text, 3:1 for large type and UI.</p>
+  <p class="lede">Twelve colors in three tiers — foundation, earth, garden — one rule above all: the site is ink and bone; the earth tones are spent like money. Contrast ratios on each swatch are computed live against the ground they sit on — WCAG asks 4.5:1 for text, 3:1 for large type and UI.</p>
 
   <!-- proportions -->
   <div class="sec">
@@ -229,6 +229,37 @@ footer p{font-size:12px;color:var(--muted);max-width:70ch}
     </div>
   </div>
 
+  <!-- the garden -->
+  <div class="sec">
+    <div class="sec-head"><span class="sec-title">The garden — <em>used rarely</em></span><span class="eyebrow">Artwork, blooms, and celebrations — never everyday UI</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="chip" style="background:#D4586D;border-bottom:1px solid var(--line)"><span class="pair" style="color:#131210">Ink on Hibiscus</span><span class="cr" data-fg="#131210" data-bg="#D4586D" style="color:#131210"></span></div>
+        <div class="card-body">
+          <div class="card-name">Hibiscus <i>— the bloom</i></div>
+          <div class="card-hex">#D4586D · rgb(212 88 109)</div>
+          <p class="card-role"><b>Rare punctuation.</b> Essay kicker dots, announcement moments, campaign art, a launch banner once a season. A flower, not a lawn — if hibiscus appears twice on one screen, it's a weed.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chip" style="background:#7E8C4D;border-bottom:1px solid var(--line)"><span class="pair" style="color:#131210">Ink on Moss</span><span class="cr" data-fg="#131210" data-bg="#7E8C4D" style="color:#131210"></span></div>
+        <div class="card-body">
+          <div class="card-name">Moss <i>— living green</i></div>
+          <div class="card-hex">#7E8C4D · rgb(126 140 77)</div>
+          <p class="card-role"><b>Artwork highlights.</b> Foliage lights in the dither art, tags, seasonal accents. Olive-leaning on purpose — the warm green of landscape, not the cool green of software.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chip" style="background:#45522D;border-bottom:1px solid var(--line)"><span class="pair" style="color:#F2EEE1">Bone on Fern</span><span class="cr" data-fg="#F2EEE1" data-bg="#45522D" style="color:#F2EEE1"></span></div>
+        <div class="card-body">
+          <div class="card-name">Fern <i>— deep olive</i></div>
+          <div class="card-hex">#45522D · rgb(69 82 45)</div>
+          <p class="card-role"><b>Artwork depths.</b> The foliage base in every dithered scene, illustration shadows. Surface tone only — never type on ink.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- pairings -->
   <div class="sec">
     <div class="sec-head"><span class="sec-title">Approved <em>pairings</em></span><span class="eyebrow">Type on color — nothing else ships</span></div>
@@ -237,6 +268,7 @@ footer p{font-size:12px;color:var(--muted);max-width:70ch}
       <div class="pair-chip" style="background:#131210"><span class="t" style="color:#E8A375;font-style:italic">Apricot italics on ink</span><span class="m" style="color:#E8A375" data-fg="#E8A375" data-bg="#131210"></span></div>
       <div class="pair-chip" style="background:#131210"><span class="t" style="color:#C9A24B">Gold notes on ink</span><span class="m" style="color:#C9A24B" data-fg="#C9A24B" data-bg="#131210"></span></div>
       <div class="pair-chip" style="background:#8A3D1C"><span class="t" style="color:#F2EEE1">Bone on ember</span><span class="m" style="color:#F2EEE1" data-fg="#F2EEE1" data-bg="#8A3D1C"></span></div>
+      <div class="pair-chip" style="background:#131210"><span class="t" style="color:#D4586D;font-style:italic">Hibiscus blooms on ink</span><span class="m" style="color:#D4586D" data-fg="#D4586D" data-bg="#131210"></span></div>
       <div class="pair-chip" style="background:#F2EEE1;border-color:transparent"><span class="t" style="color:#131210">Ink on bone</span><span class="m" style="color:#131210" data-fg="#131210" data-bg="#F2EEE1"></span></div>
       <div class="pair-chip" style="background:#F2EEE1;border-color:transparent"><span class="t" style="color:#8A3D1C;font-style:italic">Ember italics on bone</span><span class="m" style="color:#8A3D1C" data-fg="#8A3D1C" data-bg="#F2EEE1"></span></div>
     </div>
@@ -276,12 +308,13 @@ footer p{font-size:12px;color:var(--muted);max-width:70ch}
           <li><b>Gold means evidence.</b> If it's gold, it should be a number, a unit, or a caveat.</li>
           <li><b>Charts use rust #C77938 + slate.</b> The validated pair; direct-label both lines.</li>
           <li><b>Grain lives inside artwork.</b> The UI around it stays crisp.</li>
+          <li><b>Garden colors bloom, then leave.</b> Hibiscus, moss, and fern appear in artwork and occasional moments — one per screen, none in navigation, forms, or body UI.</li>
         </ul>
       </div>
       <div class="dont">
         <h4>Never</h4>
         <ul>
-          <li><b>No green.</b> Anywhere. It left for a reason.</li>
+          <li><b>No cool greens.</b> Mint, sage, kelly, forest — the software greens stay retired. Moss and fern are the only greens, and they live in the garden tier: artwork and rare accents, never UI.</li>
           <li><b>No pure black, no pure white.</b> Ink and bone are materials, not defaults.</li>
           <li><b>No gradients except the firelight</b> — and only one per page.</li>
           <li><b>No apricot text on cream</b> (fails contrast — ember takes over on paper).</li>
@@ -292,7 +325,7 @@ footer p{font-size:12px;color:var(--muted);max-width:70ch}
   </div>
 
   <footer>
-    <p>Tokens ship in production as CSS custom properties in app/globals.css — --accent (apricot), --flood (ember), --gold, --clay, --sand, --slate, --umber, plus --bg, --bg-deep, --ink, --muted, --line. This document is the human-readable contract; the stylesheet is the machine-readable one. Change them together or not at all.</p>
+    <p>Tokens ship in production as CSS custom properties in app/globals.css — --accent (apricot), --flood (ember), --gold, --clay, --sand, --slate, --umber, --hibiscus, --moss, --fern, plus --bg, --bg-deep, --ink, --muted, --line. This document is the human-readable contract; the stylesheet is the machine-readable one. Change them together or not at all.</p>
   </footer>
 </div>
 

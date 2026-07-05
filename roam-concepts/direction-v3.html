@@ -151,12 +151,12 @@ nav a:hover::after{width:100%}
 .epigraph{padding:clamp(100px,16vh,200px) 0}
 .epi-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(40px,6vw,90px);align-items:center}
 .epi-quote{
-  font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-style:italic;
-  font-size:clamp(1.7rem,3.4vw,3rem);line-height:1.24;letter-spacing:-.01em;
-  max-width:24ch;text-wrap:balance;
+  font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;
+  font-size:clamp(1.5rem,2.9vw,2.6rem);line-height:1.26;letter-spacing:-.01em;
+  max-width:30ch;text-wrap:balance;margin-top:26px;
 }
-.epi-attrib{display:block;margin-top:24px;font:600 10px/1 'Libre Franklin',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
-.epi-response{margin-top:38px;max-width:52ch;font-size:15.5px;color:var(--muted)}
+.epi-quote em{font-style:italic;color:var(--sage)}
+.epi-response{margin-top:34px;max-width:52ch;font-size:15.5px;color:var(--muted)}
 .epi-response strong{color:var(--ink);font-weight:500}
 .allegory{position:relative;width:clamp(240px,26vw,360px);aspect-ratio:1;flex:none;overflow:hidden;border-radius:2px}
 .allegory canvas{position:absolute;inset:0;width:100%;height:100%}
@@ -367,9 +367,9 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
 <section class="epigraph wrap">
   <div class="epi-grid reveal">
     <div>
-      <p class="epi-quote">"We are what we repeatedly do. Excellence, then, is not an act, but a habit."</p>
-      <span class="epi-attrib">After Aristotle</span>
-      <p class="epi-response"><strong>Retention is habit, engineered.</strong> A customer who returns isn't being loyal to you — they're repeating something you made easy, timely, and worth repeating. We build the systems they repeat.</p>
+      <span class="eyebrow">The quiet exit</span>
+      <p class="epi-quote">Three weeks ago, your best customer bought from you for the last time. No unsubscribe. No complaint. She just didn't come back — and your dashboard still calls her <em>retained.</em></p>
+      <p class="epi-response"><strong>Churn is quiet. That's the entire problem — and the entire opportunity.</strong> Because quiet works both ways: a well-timed reason to return doesn't need to shout, either. We build the systems that notice the silence, and answer it.</p>
     </div>
     <figure class="allegory">
       <canvas id="moon"></canvas>
@@ -394,7 +394,7 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
       <span class="note-date">May 2026</span>
     </a>
     <a class="note-row reveal" href="#">
-      <span class="note-title">The discount death spiral, and how to climb out of it</span>
+      <span class="note-title">What does a customer owe you? Nothing. Start there.</span>
       <span class="note-date">Apr 2026</span>
     </a>
   </div>

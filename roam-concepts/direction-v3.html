@@ -56,11 +56,11 @@ header.scrolled .header-in{padding:14px 0}
 .btn-apply:hover{background:var(--sage);transform:translateY(-1px)}
 .btn-apply:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
 @media(max-width:640px){nav{display:none}}
-.mark{display:flex;align-items:center;gap:12px;font:600 15px/1 'Libre Franklin',sans-serif;letter-spacing:.26em;color:var(--ink)}
-.mark sup{font-size:8px;letter-spacing:0;vertical-align:super}
-.emblem{width:30px;height:14px;overflow:visible;flex:none}
-.emblem path{fill:none;stroke:var(--sage);stroke-width:1.5;stroke-linecap:round}
-.emblem .head{fill:var(--sage);stroke:none}
+.mark{
+  font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;
+  font-size:27px;line-height:1;letter-spacing:-.015em;color:var(--ink);
+}
+.mark sup{font-size:10px;font-style:normal;letter-spacing:0;vertical-align:super;color:var(--muted);margin-left:2px}
 nav{display:flex;gap:clamp(16px,3vw,40px)}
 nav a{font:500 13px/1 'Libre Franklin',sans-serif;position:relative}
 nav a::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--sage);transition:width .35s cubic-bezier(.2,.6,.2,1)}
@@ -313,9 +313,12 @@ textarea.form-input{resize:vertical;min-height:96px}
 footer{background:var(--bg-deep);border-top:1px solid var(--line)}
 .footer-in{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0 64px;flex-wrap:wrap;color:var(--muted)}
 .footer-in span{font:500 11px/1.6 'Libre Franklin',sans-serif;letter-spacing:.14em;text-transform:uppercase}
-.footer-mark{display:flex;align-items:center;gap:10px}
-.footer-mark .emblem path{stroke:var(--muted)}
-.footer-mark .emblem .head{fill:var(--muted)}
+.footer-mark{display:flex;align-items:baseline;gap:10px}
+.footer-in .footer-wm{
+  font:italic 500 20px/1 'Newsreader',Georgia,serif;
+  letter-spacing:-.015em;color:var(--ink);text-transform:none;
+}
+.footer-in .footer-wm sup{font-size:8px;font-style:normal;vertical-align:super;color:var(--muted)}
 
 .badge{
   position:fixed;left:16px;bottom:16px;z-index:50;
@@ -334,13 +337,7 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
 
 <header>
   <div class="wrap header-in">
-    <a class="mark" href="#">
-      <svg class="emblem" viewBox="0 0 30 14" aria-hidden="true">
-        <path d="M1 8 C 7 2, 20 1, 26 4 C 30 6, 29 10, 23 11 C 17 12, 10 10, 7 8.6"/>
-        <path class="head" d="M7 8.6 l4 -1.6 -1.2 3.6 z"/>
-      </svg>
-      ROAM<sup>®</sup>
-    </a>
+    <a class="mark" href="#">roam<sup>®</sup></a>
     <div class="nav-right">
       <nav>
         <a href="#work">Work</a>
@@ -590,11 +587,8 @@ footer{background:var(--bg-deep);border-top:1px solid var(--line)}
 <footer>
   <div class="wrap footer-in">
     <span class="footer-mark">
-      <svg class="emblem" viewBox="0 0 30 14" aria-hidden="true">
-        <path d="M1 8 C 7 2, 20 1, 26 4 C 30 6, 29 10, 23 11 C 17 12, 10 10, 7 8.6"/>
-        <path class="head" d="M7 8.6 l4 -1.6 -1.2 3.6 z"/>
-      </svg>
-      <span>ROAM® — A retention studio</span>
+      <span class="footer-wm">roam<sup>®</sup></span>
+      <span>— A retention studio</span>
     </span>
     <span>Working worldwide, from wherever we are</span>
   </div>
